@@ -17,13 +17,15 @@
  2. Enclose the form in a Eaf.Provider component:
  
 ```
-<Eaf.Provider>
+import * as Eaf from 'easy-form';
+...
+<Eaf.FormProvider>
   <form name="myform" onSubmit={submitHandler}>
     <input name="myinput" type="text" required />
     <button type="reset">Reset</button>
     <button type="submit">Submit</button>
   </form>
-</Eaf.Provider>
+</Eaf.FormProvider>
 ```
 
  3. Replace form and form inputs with the provided equivalent Eaf components:

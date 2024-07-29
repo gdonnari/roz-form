@@ -3,7 +3,7 @@ import * as FormProvider from "./FormProvider.jsx";
 
 function Form(props) {
 
-    const validate = FormProvider.useFromContext('validate');
+    const validation = FormProvider.useFromContext('validation');
     const submitHandler = FormProvider.useSubmitHandler(props.onSubmit);
     const resetHandler = FormProvider.useResetHandler(props.onReset);
 
@@ -13,7 +13,7 @@ function Form(props) {
     form.onReset = resetHandler;
     delete form.children;
 
-    if (validate)
+    if (validation.validate)
         form.noValidate = true;
 
     return (<form {...form}>

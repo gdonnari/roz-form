@@ -18,7 +18,8 @@
         "build-browser": "node build-browser.mjs",
         "build-cjs": "esbuild src/index.js --bundle --sourcemap --format=cjs --packages=external --outfile=dist/easy-form-cjs.js",
         "build-esm": "esbuild src/index.js --bundle --sourcemap --format=esm --packages=external --outfile=dist/easy-form-esm.js",
-        "build-examples": "esbuild examples/src/index.jsx --bundle --minify --sourcemap --format=iife --outfile=examples/dist/examples.min.js"
+        "build-examples": "esbuild examples/src/index.jsx --bundle --minify --sourcemap --format=iife --outfile=examples/dist/examples.min.js",
+        "serve-examples": "esbuild examples/src/index.jsx --bundle --minify --sourcemap --format=iife --outfile=examples/dist/examples.min.js --servedir=examples"
     },
     "devDependencies": {
         "esbuild": "0.23.0",

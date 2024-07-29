@@ -40,8 +40,8 @@ function init(data) {
 
 function reducer(state, action) {
     const updated = {};
-    const componentState = {...state[action.field]};
-    let value = componentState.value;
+    const fieldState = {...state[action.field]};
+    let value = fieldState.value;
     let index = -1;
     let error = false;
 
@@ -56,8 +56,8 @@ function reducer(state, action) {
 
         case 'addValue':
 
-            if (Array.isArray(componentState.value))
-                value = [...componentState.value];
+            if (Array.isArray(fieldState.value))
+                value = [...fieldState.value];
             else
                 value = [];
 
@@ -75,8 +75,8 @@ function reducer(state, action) {
 
         case 'removeValue':
 
-            if (Array.isArray(componentState.value))
-                value = [...componentState.value];
+            if (Array.isArray(fieldState.value))
+                value = [...fieldState.value];
             else
                 value = [];
 
@@ -98,7 +98,7 @@ function reducer(state, action) {
             if (errorMessage === '')
                 errorMessage = false;
 
-            updated[action.field] = componentState;
+            updated[action.field] = fieldState;
             updated[action.field].error = errorMessage;
             break;
 
@@ -127,8 +127,7 @@ function reducer(state, action) {
     return newState;
 }
 
-export function useInvalidHandler(userHandler) {
-    const validate = useFromContext('validate');
+export function useInvalidHandler(userHandler, validate) {
     const dispatch = useFromContext('dispatch');
 
     function handler(e) {
@@ -148,8 +147,7 @@ export function useInvalidHandler(userHandler) {
     return handler;
 }
 
-export function useChangeHandler(userHandler, validateOnChange = false) {
-    const validate = useFromContext('validate');
+export function useChangeHandler(userHandler, validateOnChange) {
     const dispatch = useFromContext('dispatch');
 
     function handler(e) {
@@ -181,7 +179,7 @@ export function useChangeHandler(userHandler, validateOnChange = false) {
             data: value
         });
 
-        if (validate && validateOnChange && e.target.checkValidity()) {
+        if (validateOnChange && e.target.checkValidity()) {
             dispatch({
                 type: 'setError',
                 field: e.target.name,
@@ -197,39 +195,12 @@ export function useChangeHandler(userHandler, validateOnChange = false) {
     return handler;
 }
 
-export function useBlurHandler(userHandler) {
-    const onBlurValidate = useFromContext('onBlurValidate');
-    const validate = useFromContext('validate');
+export function useBlurHandler(userHandler, validateOnBlur) {
     const dispatch = useFromContext('dispatch');
 
     function handler(e) {
 
-        if (validate && onBlurValidate && e.target.checkValidity()) {
-            dispatch({
-                type: 'setError',
-                field: e.target.name,
-                data: e.target.validationMessage
-            });
-        }
-
-        // Call the user handler
-        if (userHandler)
-            userHandler(e);
-    }
-
-    return handler;
-}
-
-export function useKeyDownHandler(userHandler) {
-    const validate = useFromContext('validate');
-    const dispatch = useFromContext('dispatch');
-
-    function handler(e) {
-        // Validate on tab
-        if (e.keyCode !== 9)
-            return;
-
-        if (validate && e.target.checkValidity()) {
+        if (validateOnBlur && e.target.checkValidity()) {
             dispatch({
                 type: 'setError',
                 field: e.target.name,
@@ -286,7 +257,22 @@ export function useResetHandler(userHandler) {
     return handler;
 }
 
-export function Provider(props) {
+// Set default settings
+function setValidationDefaults(validation) {
+
+    const defaults = {
+        validate: true,
+        onBlurValidate: true,
+        onChangeValidate: false,
+        invalidClassName: 'easyform-invalid'
+    };
+
+    return {...defaults, ...validation};
+}
+
+export function FormProvider(props) {
+
+    const validation = setValidationDefaults(props.validation);
     const initialState = init(props.data);
     const [state, dispatch] = React.useReducer(reducer, initialState);
 
@@ -294,9 +280,7 @@ export function Provider(props) {
         initialState: initialState,
         state: state,
         dispatch: dispatch,
-        validate: props.validate ?? true,
-        onBlurValidate: props.onBlurValidate ?? true,
-        invalidClassName: props.invalidClassName ?? 'easyform-invalid'
+        validation: validation
     };
 
     return (<Context.Provider value={context}>

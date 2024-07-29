@@ -15,7 +15,7 @@ function SmallForm(props) {
         console.log('Form is valid');
     }
 
-    return (<Eaf.Provider data={props.data} validate={true}>
+    return (<Eaf.FormProvider data={props.data}>
         <Eaf.Form onSubmit={submitHandler}>
             <Eaf.Input type="hidden" name="orderid" />
             <datalist id="pets">
@@ -48,6 +48,6 @@ function SmallForm(props) {
                 <Eaf.Button type="submit" disabled="formState">Submit</Eaf.Button> 
             </div>
         </Eaf.Form>
-    </Eaf.Provider>);
+    </Eaf.FormProvider>);
 }
 export { SmallForm };

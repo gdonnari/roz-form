@@ -3,9 +3,13 @@ import * as FormProvider from "./FormProvider.jsx";
 
 function Textarea(props) {
 
-    const changeHandler = FormProvider.useChangeHandler(props.onChange);
-    const invalidHandler = FormProvider.useInvalidHandler(props.onInvalid);
-    const blurHandler = FormProvider.useBlurHandler(props.onBlur);
+    const validation = FormProvider.useFromContext('validation');
+    const validateOnBlur = props.validateOnBlur ?? (validation.validate && validation.onBlurValidate);
+    const validateOnChange = props.validateOnChange ?? (validation.validate && validation.onChangeValidate);
+
+    const blurHandler = FormProvider.useBlurHandler(props.onBlur, validateOnBlur);
+    const changeHandler = FormProvider.useChangeHandler(props.onChange, validateOnChange);
+    const invalidHandler = FormProvider.useInvalidHandler(props.onInvalid, validation.validate);
     const state = FormProvider.useFieldState(props.name);
 
     // Textarea
@@ -16,10 +20,8 @@ function Textarea(props) {
     textarea.value ??= state.value;
     textarea.className ??= '';
 
-    const invalidClassName = FormProvider.useFromContext('invalidClassName');
-
     if (state.error)
-        textarea.className += ' ' + invalidClassName;
+        textarea.className += ' ' + validation.invalidClassName;
 
     return (<textarea {...textarea}/>);
 }

@@ -1,4 +1,4 @@
-export { Provider } from "./FormProvider.jsx";
+export { FormProvider } from "./FormProvider.jsx";
 export { Form } from "./form.jsx";
 export { Input } from "./input.jsx";
 export { Select } from "./select.jsx";

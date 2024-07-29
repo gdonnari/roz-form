@@ -20,7 +20,14 @@ function LargeForm(props) {
         return d.toLocaleString('en-GB');
     }
 
-    return (<Eaf.Provider data={props.data} validate={true}>
+    const validation = {
+        validate: true,
+        onBlurValidate: true,
+        onChangeValidate: false,
+        invalidClassName: 'custom-invalid'
+    };
+
+    return (<Eaf.FormProvider data={props.data} validation={validation}>
         <Eaf.Form onSubmit={submitHandler}>
             <Eaf.Input type="hidden" name="orderid" />
             <datalist id="pets">
@@ -57,7 +64,7 @@ function LargeForm(props) {
             </div>
             <div>
                 <label>Password input: 
-                    <Eaf.Input name="pass" type="password" validateOnChange={true} minLength="8" maxLength="30" required />
+                    <Eaf.Input name="pass" type="password" validateOnChange={true} validateOnBlur={false}  minLength="8" maxLength="30" required />
                 </label>
                 <Eaf.ErrorMessage forInput="pass"></Eaf.ErrorMessage>
             </div>
@@ -148,6 +155,6 @@ function LargeForm(props) {
                 <Eaf.Button type="submit" disabled="formState">Submit</Eaf.Button> 
             </div>
         </Eaf.Form>
-    </Eaf.Provider>);
+    </Eaf.FormProvider>);
 }
 export { LargeForm };

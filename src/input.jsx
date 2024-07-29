@@ -3,9 +3,13 @@ import * as FormProvider from "./FormProvider.jsx";
 
 function Input(props) {
 
-    const changeHandler = FormProvider.useChangeHandler(props.onChange, props.validateOnChange);
-    const invalidHandler = FormProvider.useInvalidHandler(props.onInvalid);
-    const blurHandler = FormProvider.useBlurHandler(props.onBlur);
+    const validation = FormProvider.useFromContext('validation');
+    const validateOnBlur = props.validateOnBlur ?? (validation.validate && validation.onBlurValidate);
+    const validateOnChange = props.validateOnChange ?? (validation.validate && validation.onChangeValidate);
+
+    const blurHandler = FormProvider.useBlurHandler(props.onBlur, validateOnBlur);
+    const changeHandler = FormProvider.useChangeHandler(props.onChange, validateOnChange);
+    const invalidHandler = FormProvider.useInvalidHandler(props.onInvalid, validation.validate);
 
     let defaultValue = '';
 
@@ -27,10 +31,8 @@ function Input(props) {
     input.className ??= '';
     delete input.validateOnChange;
 
-    const invalidClassName = FormProvider.useFromContext('invalidClassName');
-
     if (state.error)
-        input.className += ' ' + invalidClassName;
+        input.className += ' ' + validation.invalidClassName;
 
     function getChecked(values) {
         let count = values.length;
