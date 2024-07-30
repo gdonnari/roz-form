@@ -8,16 +8,23 @@ function LargeForm(props) {
         e.preventDefault();
 
         if (!e.target.checkValidity()) {
-            console.log('Form is invalid');
             return false;
         }
 
-        console.log('Form is valid');
+        // submit...
     }
 
     function dateFormatLocal(value) {
         const d = new Date(value);
         return d.toLocaleString('en-GB');
+    }
+
+    function formError(field, error) {
+
+        if (error)
+            return 'Form is invalid';
+
+        return 'Form is valid';
     }
 
     const validation = {
@@ -155,6 +162,7 @@ function LargeForm(props) {
                 <Roz.Button type="submit" disabled="formState">Submit</Roz.Button> 
             </div>
         </Roz.Form>
+        <p><Roz.ErrorMessage forInput="form" display={formError}></Roz.ErrorMessage></p>
     </Roz.FormProvider>);
 }
 export { LargeForm };

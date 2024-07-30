@@ -428,6 +428,8 @@ function StateValue(props) {
 // src/ErrorMessage.js
 function ErrorMessage(props) {
   const state = useFieldState(props.forInput);
+  if (typeof props.display === "function")
+    return props.display(props.forInput, state.error);
   return state.error;
 }
 //# sourceMappingURL=roz-form-cjs.js.map
