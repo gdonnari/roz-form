@@ -7,8 +7,8 @@ esbuild.build({
     bundle: true,
     minify: true,
     sourcemap: true,
-    globalName: 'Eaf',
-    outfile: 'dist/easy-form.min.js',
+    globalName: 'Roz',
+    outfile: 'dist/roz-form.min.js',
     plugins: [
         externalGlobalPlugin({
             'react': 'window.React'

@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Eaf from '../../src/index.js';
+import * as Roz from '../../src/index.js';
 import { CustomInput } from "./custom_input.jsx";
 
 function SmallForm(props) {
@@ -15,9 +15,9 @@ function SmallForm(props) {
         console.log('Form is valid');
     }
 
-    return (<Eaf.FormProvider data={props.data}>
-        <Eaf.Form onSubmit={submitHandler}>
-            <Eaf.Input type="hidden" name="orderid" />
+    return (<Roz.FormProvider data={props.data}>
+        <Roz.Form onSubmit={submitHandler}>
+            <Roz.Input type="hidden" name="orderid" />
             <datalist id="pets">
                 <option value="dog"></option>
                 <option value="cat"></option>
@@ -27,27 +27,27 @@ function SmallForm(props) {
             </datalist>
             <div>
                 <label>Text input: 
-                    <Eaf.Input name="name" required /> 
+                    <Roz.Input name="name" required /> 
                 </label>
-                <Eaf.ErrorMessage forInput="name"></Eaf.ErrorMessage>
+                <Roz.ErrorMessage forInput="name"></Roz.ErrorMessage>
             </div>
             <div>
                 <label>Numeric input: 
-                    <Eaf.Input name="quantity" type="number" min="1" max="10" required />
+                    <Roz.Input name="quantity" type="number" min="1" max="10" required />
                 </label>
-                <Eaf.ErrorMessage forInput="quantity"></Eaf.ErrorMessage>
+                <Roz.ErrorMessage forInput="quantity"></Roz.ErrorMessage>
             </div>
             <div>
                 <label>Custom input: 
                     <CustomInput name="custom" required />
                 </label>
-                <Eaf.ErrorMessage forInput="CustomInput"></Eaf.ErrorMessage>
+                <Roz.ErrorMessage forInput="CustomInput"></Roz.ErrorMessage>
             </div>
             <div>
                 <button type="reset">Reset</button> 
-                <Eaf.Button type="submit" disabled="formState">Submit</Eaf.Button> 
+                <Roz.Button type="submit" disabled="formState">Submit</Roz.Button> 
             </div>
-        </Eaf.Form>
-    </Eaf.FormProvider>);
+        </Roz.Form>
+    </Roz.FormProvider>);
 }
 export { SmallForm };

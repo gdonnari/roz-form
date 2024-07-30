@@ -1,5 +1,5 @@
 import React from 'react';
-import * as Eaf from '../../src/index.js';
+import * as Roz from '../../src/index.js';
 import { CustomInput } from "./custom_input.jsx";
 
 function LargeForm(props) {
@@ -27,9 +27,9 @@ function LargeForm(props) {
         invalidClassName: 'custom-invalid'
     };
 
-    return (<Eaf.FormProvider data={props.data} validation={validation}>
-        <Eaf.Form onSubmit={submitHandler}>
-            <Eaf.Input type="hidden" name="orderid" />
+    return (<Roz.FormProvider data={props.data} validation={validation}>
+        <Roz.Form onSubmit={submitHandler}>
+            <Roz.Input type="hidden" name="orderid" />
             <datalist id="pets">
                 <option value="dog"></option>
                 <option value="cat"></option>
@@ -39,122 +39,122 @@ function LargeForm(props) {
             </datalist>
             <div>
                 <label>Text input: 
-                    <Eaf.Input name="name" required /> 
+                    <Roz.Input name="name" required /> 
                 </label>
-                <Eaf.ErrorMessage forInput="name"></Eaf.ErrorMessage>
+                <Roz.ErrorMessage forInput="name"></Roz.ErrorMessage>
             </div>
             <div>
                 <label>Numeric input: 
-                    <Eaf.Input name="quantity" type="number" min="1" max="10" required />
+                    <Roz.Input name="quantity" type="number" min="1" max="10" required />
                 </label>
-                <Eaf.ErrorMessage forInput="quantity"></Eaf.ErrorMessage>
+                <Roz.ErrorMessage forInput="quantity"></Roz.ErrorMessage>
             </div>
             <div>
                 <label>Custom input: 
                     <CustomInput name="custom" required />
                 </label>
-                <Eaf.ErrorMessage forInput="CustomInput"></Eaf.ErrorMessage>
+                <Roz.ErrorMessage forInput="CustomInput"></Roz.ErrorMessage>
             </div>
             <div>
                 <label>Static field: 
                     <output>
-                        <Eaf.StateValue forInput="orderdate" display={dateFormatLocal}></Eaf.StateValue>
+                        <Roz.StateValue forInput="orderdate" display={dateFormatLocal}></Roz.StateValue>
                     </output>
                 </label>
             </div>
             <div>
                 <label>Password input: 
-                    <Eaf.Input name="pass" type="password" validateOnChange={true} validateOnBlur={false}  minLength="8" maxLength="30" required />
+                    <Roz.Input name="pass" type="password" validateOnChange={true} validateOnBlur={false}  minLength="8" maxLength="30" required />
                 </label>
-                <Eaf.ErrorMessage forInput="pass"></Eaf.ErrorMessage>
+                <Roz.ErrorMessage forInput="pass"></Roz.ErrorMessage>
             </div>
             <div>
                 <label>Select: 
-                    <Eaf.Select name="size" required>
+                    <Roz.Select name="size" required>
                         <option value=""></option>
                         <option value="small">Small</option>
                         <option value="medium">Medium</option>
                         <option value="large">Large</option>
                         <option value="extra">Extra Large</option>
-                    </Eaf.Select>
+                    </Roz.Select>
                 </label>
-                <Eaf.ErrorMessage forInput="size"></Eaf.ErrorMessage>
+                <Roz.ErrorMessage forInput="size"></Roz.ErrorMessage>
             </div>
             <div>
                 <label>Select multiple: 
-                    <Eaf.Select name="additions" multiple>
+                    <Roz.Select name="additions" multiple>
                         <option value="sugar">Sugar</option>
                         <option value="milk">Milk</option>
                         <option value="caramel">Caramel</option>
                         <option value="cinnamon">Cinnamon</option>
-                    </Eaf.Select>
+                    </Roz.Select>
                 </label>
-                <Eaf.ErrorMessage forInput="additions"></Eaf.ErrorMessage>
+                <Roz.ErrorMessage forInput="additions"></Roz.ErrorMessage>
             </div>
             <div>
                 <div>
                     Checkbox multiple: 
                     <label>
-                        <Eaf.Input multiple type="checkbox" name="toppings" value="chocolate" />
+                        <Roz.Input multiple type="checkbox" name="toppings" value="chocolate" />
                         Chocolate
                     </label>
                     <label>
-                        <Eaf.Input multiple type="checkbox" name="toppings" value="cream" />
+                        <Roz.Input multiple type="checkbox" name="toppings" value="cream" />
                         Cream
                     </label>
-                    <Eaf.ErrorMessage forInput="toppings"></Eaf.ErrorMessage>
+                    <Roz.ErrorMessage forInput="toppings"></Roz.ErrorMessage>
                 </div>
             </div>
             <div>
                 <label>Textarea: 
-                    <Eaf.Textarea name="comments" />
+                    <Roz.Textarea name="comments" />
                 </label>
-                <Eaf.ErrorMessage forInput="comments"></Eaf.ErrorMessage>
+                <Roz.ErrorMessage forInput="comments"></Roz.ErrorMessage>
             </div>
             <div>
                 <div>
                     Radio:                     
                     <label>
-                        <Eaf.Input type="radio" name="drop" value="delivery" required />
+                        <Roz.Input type="radio" name="drop" value="delivery" required />
                         Delivery
                     </label>
                     <label>
-                        <Eaf.Input type="radio" name="drop" value="takeaway" required />
+                        <Roz.Input type="radio" name="drop" value="takeaway" required />
                         Take away
                     </label>
-                    <Eaf.ErrorMessage forInput="drop"></Eaf.ErrorMessage>
+                    <Roz.ErrorMessage forInput="drop"></Roz.ErrorMessage>
                 </div>
             </div>
             <div>
                 <label>Input with datalist: 
-                    <Eaf.Input name="pet" list="pets" />
+                    <Roz.Input name="pet" list="pets" />
                 </label>
-                <Eaf.ErrorMessage forInput="pet"></Eaf.ErrorMessage>
+                <Roz.ErrorMessage forInput="pet"></Roz.ErrorMessage>
             </div>
             <div>
                 <label>File input: 
-                    <Eaf.Input type="file" name="bill" required />
+                    <Roz.Input type="file" name="bill" required />
                 </label>
-                <Eaf.ErrorMessage forInput="bill"></Eaf.ErrorMessage>
+                <Roz.ErrorMessage forInput="bill"></Roz.ErrorMessage>
             </div>
             <div>
                 <label>File input multiple: 
-                    <Eaf.Input type="file" name="pics[]" multiple />
+                    <Roz.Input type="file" name="pics[]" multiple />
                 </label>
-                <Eaf.ErrorMessage forInput="pics"></Eaf.ErrorMessage>
+                <Roz.ErrorMessage forInput="pics"></Roz.ErrorMessage>
             </div>
             <div>
                 <label>
-                    <Eaf.Input type="checkbox" name="acceptance" value="T" required  />
+                    <Roz.Input type="checkbox" name="acceptance" value="T" required  />
                     Checkbox
                 </label>
-                <Eaf.ErrorMessage forInput="acceptance"></Eaf.ErrorMessage>
+                <Roz.ErrorMessage forInput="acceptance"></Roz.ErrorMessage>
             </div>
             <div>
                 <button type="reset">Reset</button> 
-                <Eaf.Button type="submit" disabled="formState">Submit</Eaf.Button> 
+                <Roz.Button type="submit" disabled="formState">Submit</Roz.Button> 
             </div>
-        </Eaf.Form>
-    </Eaf.FormProvider>);
+        </Roz.Form>
+    </Roz.FormProvider>);
 }
 export { LargeForm };

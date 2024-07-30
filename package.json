@@ -1,23 +1,26 @@
 {
-    "name": "easy-form",
+    "name": "roz-form",
     "version": "0.1.0",
-    "description": "Easy form is a component library for react forms.",
+    "description": "Roz Form is a component library for react forms.",
     "private": true,
     "keywords": [
-        "easy-form"
+        "roz-form",
+        "roz",
+        "forms",
+        "react"
     ],
     "license": "MIT",
     "author": "Guido Donnari <gdonnari@gmail.com>",
-    "main": "dist/easy-form-cjs.js",
-    "module": "dist/easy-form-esm.js",
+    "main": "dist/roz-form-cjs.js",
+    "module": "dist/roz-form-esm.js",
     "files": [
         "dist/*",
         "src/*"
     ],
     "scripts": {
         "build-browser": "node build-browser.mjs",
-        "build-cjs": "esbuild src/index.js --bundle --sourcemap --format=cjs --packages=external --outfile=dist/easy-form-cjs.js",
-        "build-esm": "esbuild src/index.js --bundle --sourcemap --format=esm --packages=external --outfile=dist/easy-form-esm.js",
+        "build-cjs": "esbuild src/index.js --bundle --sourcemap --format=cjs --packages=external --outfile=dist/roz-form-cjs.js",
+        "build-esm": "esbuild src/index.js --bundle --sourcemap --format=esm --packages=external --outfile=dist/roz-form-esm.js",
         "build-examples": "esbuild examples/src/index.jsx --bundle --minify --sourcemap --format=iife --outfile=examples/dist/examples.min.js",
         "serve-examples": "esbuild examples/src/index.jsx --bundle --minify --sourcemap --format=iife --outfile=examples/dist/examples.min.js --servedir=examples"
     },
