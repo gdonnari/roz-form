@@ -191,7 +191,7 @@ function setValidationDefaults(validation) {
     validate: true,
     onBlurValidate: true,
     onChangeValidate: false,
-    invalidClassName: "easyform-invalid"
+    invalidClassName: "roz-invalid"
   };
   return { ...defaults, ...validation };
 }

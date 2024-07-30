@@ -20,7 +20,7 @@ const record = {
 
 export default function MyApp() {
 
-    const [form, setForm] = React.useState('small');
+    const [form, setForm] = React.useState('large');
 
     function showSmall(e) {
         setForm('small');
