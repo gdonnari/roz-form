@@ -2,11 +2,17 @@
 
 # Roz
 
-Roz is a personal project. The goal is to handle the state of any form as easy as possible without the need for you to use complex settings neither any React effect.
+> React forms made easy.
+
+Form definition should be easy to read and intuitive.
+
+Roz goal is to handle the state of any form as easily as possible without the need of complex configurations neither React effects.
 
 The one and only Roz concern is about form state management.
-It doesn't provide any css or form layout utility.
-Validation is supported via standar HTML5 constraint API.
+Roz doesn't provide any css or form layout utility.
+Form validation is supported via standar HTML5 constraint API.
+
+Roz can be used as base component library for fully styled forms without the burden of state managent.
 
 
 ## Basic Usage
@@ -235,6 +241,8 @@ export { MyCustomInput };
 ```
 
 ### Goodies
+
+Some helper components to make working with forms even easier.
 
 #### Submit button state
 Replace `button` tag with Roz provided one to enable/disable submit button based on validation state:

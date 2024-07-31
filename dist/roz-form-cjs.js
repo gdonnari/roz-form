@@ -269,8 +269,13 @@ function Form(props) {
 // src/input.jsx
 var import_react3 = __toESM(require("react"));
 function Input(props) {
+  if (!props.name)
+    throw Error("Roz requires to set a name attribute for each managed input. Please review your form inputs.");
   const validation = useFromContext("validation");
-  const validateOnBlur = props.validateOnBlur ?? (validation.validate && validation.onBlurValidate);
+  let blurEnabled = true;
+  if (props.type === "checkbox" || props.type === "radio")
+    blurEnabled = false;
+  const validateOnBlur = props.validateOnBlur ?? (validation.validate && validation.onBlurValidate && blurEnabled);
   const validateOnChange = props.validateOnChange ?? (validation.validate && validation.onChangeValidate);
   const blurHandler = useBlurHandler(props.onBlur, validateOnBlur);
   const changeHandler = useChangeHandler(props.onChange, validateOnChange);
@@ -288,8 +293,11 @@ function Input(props) {
   input.onBlur = blurHandler;
   input.className ??= "";
   delete input.validateOnChange;
-  if (state.error)
-    input.className += " " + validation.invalidClassName;
+  delete input.invalidClassName;
+  if (state.error) {
+    const invalidClassName = props.invalidClassName ?? validation.invalidClassName;
+    input.className += " " + invalidClassName;
+  }
   function getChecked(values) {
     let count = values.length;
     for (let i = 0; i < count; i++)
@@ -299,16 +307,13 @@ function Input(props) {
   }
   if (props.type === "checkbox") {
     if (props.multiple) {
-      delete input.onBlur;
       input.checked = getChecked(state.value);
     } else {
       input.checked = props.value === state.value;
     }
   }
-  if (props.type === "radio") {
-    delete input.onBlur;
+  if (props.type === "radio")
     input.checked = props.value === state.value;
-  }
   return /* @__PURE__ */ import_react3.default.createElement("input", { ...input });
 }
 
@@ -343,6 +348,8 @@ function OptionList(props) {
 
 // src/select.jsx
 function Select(props) {
+  if (!props.name)
+    throw Error("Roz requires to set a name attribute for each managed input. Please review your form inputs.");
   const validation = useFromContext("validation");
   const validateOnBlur = props.validateOnBlur ?? (validation.validate && validation.onBlurValidate);
   const validateOnChange = props.validateOnChange ?? (validation.validate && validation.onChangeValidate);
@@ -362,8 +369,11 @@ function Select(props) {
   select.onBlur = blurHandler;
   select.value ??= value;
   select.className ??= "";
-  if (state.error)
-    select.className += " " + validation.invalidClassName;
+  delete select.invalidClassName;
+  if (state.error) {
+    const invalidClassName = props.invalidClassName ?? validation.invalidClassName;
+    select.className += " " + invalidClassName;
+  }
   if (props.options) {
     delete select.options;
     return /* @__PURE__ */ import_react6.default.createElement("select", { ...select }, /* @__PURE__ */ import_react6.default.createElement(OptionList, { options: props.options }));
@@ -375,6 +385,8 @@ function Select(props) {
 // src/textarea.jsx
 var import_react7 = __toESM(require("react"));
 function Textarea(props) {
+  if (!props.name)
+    throw Error("Roz requires to set a name attribute for each managed input. Please review your form inputs.");
   const validation = useFromContext("validation");
   const validateOnBlur = props.validateOnBlur ?? (validation.validate && validation.onBlurValidate);
   const validateOnChange = props.validateOnChange ?? (validation.validate && validation.onChangeValidate);
@@ -388,8 +400,11 @@ function Textarea(props) {
   textarea.onBlur = blurHandler;
   textarea.value ??= state.value;
   textarea.className ??= "";
-  if (state.error)
-    textarea.className += " " + validation.invalidClassName;
+  delete textarea.invalidClassName;
+  if (state.error) {
+    const invalidClassName = props.invalidClassName ?? validation.invalidClassName;
+    textarea.className += " " + invalidClassName;
+  }
   return /* @__PURE__ */ import_react7.default.createElement("textarea", { ...textarea });
 }
 
