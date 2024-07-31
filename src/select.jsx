@@ -4,6 +4,10 @@ import { OptionList } from "./option_list.jsx";
 
 function Select(props) {
 
+    // Name attribute is required
+    if (!props.name)
+        throw Error('Roz requires to set a name attribute for each managed input. Please review your form inputs.');
+
     const validation = FormProvider.useFromContext('validation');
     const validateOnBlur = props.validateOnBlur ?? (validation.validate && validation.onBlurValidate);
     const validateOnChange = props.validateOnChange ?? (validation.validate && validation.onChangeValidate);
@@ -30,8 +34,13 @@ function Select(props) {
     select.value ??= value;
     select.className ??= '';
 
-    if (state.error)
-        select.className += ' ' + validation.invalidClassName;
+    // invalidClassName
+    delete select.invalidClassName;
+    
+    if (state.error) {
+        const invalidClassName = props.invalidClassName ?? validation.invalidClassName;
+        select.className += ' ' + invalidClassName;
+    }
 
     if (props.options) {
         delete select.options;

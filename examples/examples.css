@@ -5,3 +5,7 @@
 .custom-invalid {
     border: 1px solid red;
 }
+
+form > div {
+    padding: 2px;
+}

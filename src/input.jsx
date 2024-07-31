@@ -3,8 +3,18 @@ import * as FormProvider from "./FormProvider.jsx";
 
 function Input(props) {
 
+    // Name attribute is required
+    if (!props.name)
+        throw Error('Roz requires to set a name attribute for each managed input. Please review your form inputs.');
+
     const validation = FormProvider.useFromContext('validation');
-    const validateOnBlur = props.validateOnBlur ?? (validation.validate && validation.onBlurValidate);
+    let blurEnabled = true;
+
+    // Do not validate on blur for checkbox and radio
+    if (props.type === 'checkbox' || props.type === 'radio')
+        blurEnabled = false;
+
+    const validateOnBlur = props.validateOnBlur ?? (validation.validate && validation.onBlurValidate && blurEnabled);
     const validateOnChange = props.validateOnChange ?? (validation.validate && validation.onChangeValidate);
 
     const blurHandler = FormProvider.useBlurHandler(props.onBlur, validateOnBlur);
@@ -31,8 +41,13 @@ function Input(props) {
     input.className ??= '';
     delete input.validateOnChange;
 
-    if (state.error)
-        input.className += ' ' + validation.invalidClassName;
+    // invalidClassName
+    delete input.invalidClassName;
+
+    if (state.error) {
+        const invalidClassName = props.invalidClassName ?? validation.invalidClassName;
+        input.className += ' ' + invalidClassName;
+    }
 
     function getChecked(values) {
         let count = values.length;
@@ -45,17 +60,14 @@ function Input(props) {
 
     if (props.type === 'checkbox') {
         if (props.multiple) {
-            delete input.onBlur;
             input.checked = getChecked(state.value);
         } else {
             input.checked = (props.value === state.value);
         }
     }
 
-    if (props.type === 'radio') {
-        delete input.onBlur;
+    if (props.type === 'radio')
         input.checked = (props.value === state.value);
-    }
 
     return (<input {...input}/>);
 }

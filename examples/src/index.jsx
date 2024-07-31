@@ -1,7 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { LargeForm } from "./large.jsx";
-import { SmallForm } from "./small.jsx";
+import { LargeForm } from "./large_form.jsx";
 
 const record = {
     orderid: 1,
@@ -19,40 +18,10 @@ const record = {
 };
 
 export default function MyApp() {
-
-    const [form, setForm] = React.useState('large');
-
-    function showSmall(e) {
-        setForm('small');
-    }
-
-    function showLarge(e) {
-        setForm('large');
-    }
-
-    let title = null;
-    let element = null;
-
-    switch (form) {
-        case 'large':
-            title = 'Large Form';
-            element = (<LargeForm data={record} />);
-            break;
-        case 'small':
-            title = 'Small Form';
-            element = (<SmallForm data={record} />);
-            break;
-    }
-
     return (
             <div>
-                <h1>Examples</h1>
-                <ul>
-                    <li><a href="#" onClick={showSmall}>Small Form</a></li>
-                    <li><a href="#" onClick={showLarge}>Large Form</a></li>
-                </ul>
-                <h1>{title}</h1>
-                {element}
+                <h1>Large Form</h1>
+                <LargeForm />
             </div>
             );
 }

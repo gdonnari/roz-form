@@ -1,6 +1,7 @@
 import React from 'react';
 import * as Roz from '../../src/index.js';
 import { CustomInput } from "./custom_input.jsx";
+import * as Dataset from "./data.js";
 
 function LargeForm(props) {
 
@@ -31,72 +32,61 @@ function LargeForm(props) {
         validate: true,
         onBlurValidate: true,
         onChangeValidate: false,
-        invalidClassName: 'custom-invalid'
+        invalidClassName: 'roz-invalid'
     };
 
     return (<Roz.FormProvider data={props.data} validation={validation}>
         <Roz.Form onSubmit={submitHandler}>
             <Roz.Input type="hidden" name="orderid" />
-            <datalist id="pets">
-                <option value="dog"></option>
-                <option value="cat"></option>
-                <option value="bird"></option>
-                <option value="fish"></option>
-                <option value="apple"></option>
-            </datalist>
+            <Roz.Datalist id="pets" options={Dataset.pets} />
             <div>
                 <label>Text input: 
-                    <Roz.Input name="name" required /> 
+                    <Roz.Input name="name" type="text" required /> 
                 </label>
-                <Roz.ErrorMessage forInput="name"></Roz.ErrorMessage>
+                <Roz.ErrorMessage forInput="name" /> 
             </div>
             <div>
                 <label>Numeric input: 
                     <Roz.Input name="quantity" type="number" min="1" max="10" required />
                 </label>
-                <Roz.ErrorMessage forInput="quantity"></Roz.ErrorMessage>
+                <Roz.ErrorMessage forInput="quantity" /> 
             </div>
             <div>
                 <label>Custom input: 
-                    <CustomInput name="custom" required />
+                    <CustomInput name="custom" type="text" readOnly />
                 </label>
-                <Roz.ErrorMessage forInput="CustomInput"></Roz.ErrorMessage>
+                <Roz.ErrorMessage forInput="custom" /> 
             </div>
             <div>
-                <label>Static field: 
+                <label>Date input: 
+                    <Roz.Input name="orderdate" type="datetime-local" required /> 
+                </label>
+                <Roz.ErrorMessage forInput="orderdate" /> 
+            </div>
+            <div>
+                <label>Input value: 
                     <output>
-                        <Roz.StateValue forInput="orderdate" display={dateFormatLocal}></Roz.StateValue>
+                        <Roz.StateValue forInput="orderdate" display={dateFormatLocal}/>
                     </output>
                 </label>
             </div>
             <div>
                 <label>Password input: 
-                    <Roz.Input name="pass" type="password" validateOnChange={true} validateOnBlur={false}  minLength="8" maxLength="30" required />
+                    <Roz.Input name="pass" type="password" validateOnChange={true} validateOnBlur={false} invalidClassName="custom-invalid" minLength="8" maxLength="30" required />
                 </label>
-                <Roz.ErrorMessage forInput="pass"></Roz.ErrorMessage>
+                <Roz.ErrorMessage forInput="pass" /> 
             </div>
             <div>
                 <label>Select: 
-                    <Roz.Select name="size" required>
-                        <option value=""></option>
-                        <option value="small">Small</option>
-                        <option value="medium">Medium</option>
-                        <option value="large">Large</option>
-                        <option value="extra">Extra Large</option>
-                    </Roz.Select>
+                    <Roz.Select name="size" required options={Dataset.sizes} />
                 </label>
-                <Roz.ErrorMessage forInput="size"></Roz.ErrorMessage>
+                <Roz.ErrorMessage forInput="size" /> 
             </div>
             <div>
                 <label>Select multiple: 
-                    <Roz.Select name="additions" multiple>
-                        <option value="sugar">Sugar</option>
-                        <option value="milk">Milk</option>
-                        <option value="caramel">Caramel</option>
-                        <option value="cinnamon">Cinnamon</option>
-                    </Roz.Select>
+                    <Roz.Select name="additions" multiple options={Dataset.additions} />
                 </label>
-                <Roz.ErrorMessage forInput="additions"></Roz.ErrorMessage>
+                <Roz.ErrorMessage forInput="additions" /> 
             </div>
             <div>
                 <div>
@@ -109,14 +99,14 @@ function LargeForm(props) {
                         <Roz.Input multiple type="checkbox" name="toppings" value="cream" />
                         Cream
                     </label>
-                    <Roz.ErrorMessage forInput="toppings"></Roz.ErrorMessage>
+                    <Roz.ErrorMessage forInput="toppings" /> 
                 </div>
             </div>
             <div>
                 <label>Textarea: 
                     <Roz.Textarea name="comments" />
                 </label>
-                <Roz.ErrorMessage forInput="comments"></Roz.ErrorMessage>
+                <Roz.ErrorMessage forInput="comments" /> 
             </div>
             <div>
                 <div>
@@ -129,40 +119,40 @@ function LargeForm(props) {
                         <Roz.Input type="radio" name="drop" value="takeaway" required />
                         Take away
                     </label>
-                    <Roz.ErrorMessage forInput="drop"></Roz.ErrorMessage>
+                    <Roz.ErrorMessage forInput="drop" /> 
                 </div>
             </div>
             <div>
                 <label>Input with datalist: 
-                    <Roz.Input name="pet" list="pets" />
+                    <Roz.Input type="text" name="pet" list="pets" />
                 </label>
-                <Roz.ErrorMessage forInput="pet"></Roz.ErrorMessage>
+                <Roz.ErrorMessage forInput="pet" /> 
             </div>
             <div>
                 <label>File input: 
                     <Roz.Input type="file" name="bill" required />
                 </label>
-                <Roz.ErrorMessage forInput="bill"></Roz.ErrorMessage>
+                <Roz.ErrorMessage forInput="bill" /> 
             </div>
             <div>
                 <label>File input multiple: 
                     <Roz.Input type="file" name="pics[]" multiple />
                 </label>
-                <Roz.ErrorMessage forInput="pics"></Roz.ErrorMessage>
+                <Roz.ErrorMessage forInput="pics" /> 
             </div>
             <div>
                 <label>
                     <Roz.Input type="checkbox" name="acceptance" value="T" required  />
                     Checkbox
                 </label>
-                <Roz.ErrorMessage forInput="acceptance"></Roz.ErrorMessage>
+                <Roz.ErrorMessage forInput="acceptance" /> 
             </div>
             <div>
                 <button type="reset">Reset</button> 
                 <Roz.Button type="submit" disabled="formState">Submit</Roz.Button> 
             </div>
         </Roz.Form>
-        <p><Roz.ErrorMessage forInput="form" display={formError}></Roz.ErrorMessage></p>
+        <p><Roz.ErrorMessage forInput="form" display={formError} /></p>
     </Roz.FormProvider>);
 }
 export { LargeForm };

@@ -3,7 +3,7 @@ import {StateValue, Input} from '../../src/index.js';
 
 function CustomInput(props) {
 
-    const value = StateValue({forInput: 'calculated'});
+    const value = StateValue({forInput: 'custom'});
     const name = StateValue({forInput: 'name'});
     const nickName = StateValue({forInput: 'quantity'});
     let calculated = value;
