@@ -8,17 +8,17 @@ Form definition should be easy to read and intuitive.
 
 Roz goal is to handle the state of any form as easily as possible without the need of complex configurations neither React effects.
 
-The one and only Roz concern is about form state management.
-Roz doesn't provide any css or form layout utility.
-Form validation is supported via standar HTML5 constraint API.
+The only Roz concern is about form state management.
+Roz doesn't provide any CSS or form layout utility.
+Form validation is supported via [HTML5 Constraint validation](https://developer.mozilla.org/en-US/docs/Web/HTML/Constraint_validation).
 
-Roz can be used as base component library for fully styled forms without the burden of state managent.
+Roz can be used as base component library for fully styled forms without the burden of state management.
 
 
 ## Basic Usage
 
 To easy understand how to use Roz, let's implement a form in 3 simple steps.
-For this example we will use the three main components Roz provides: `input`, `select` and `textarea`.
+In the following example we will use the three main components Roz provides: `Input`, `Select` and `Textarea`.
 
 Step 1. 
 Write your form as usual, nothing really new here.
@@ -108,14 +108,14 @@ From now on, the form state is managed by Roz.
 Some inputs are meant to be multiple, such as:
 
  - Selects with the `multiple` attribute.
- - Checkboxes whith the same `name` attribute. (*)
- - Inputs with `type="file"` and the `multiple` attribute.
+ - Checkboxes with the same `name` attribute. (*)
+ - Inputs with `type="file"` and `multiple` attributes.
 
-For such cases, Roz uses arrays to store the values.
+For such cases, Roz uses arrays to store the input values.
 
 #### * Notes on Checkbox multiple:
 
-For Roz to properly recognize checkboxes as multiple, just add a `multiple` atribute on each one. This is required because Roz is lazy and doesn't perform any scan or analysis on input names.
+For Roz to properly recognize checkboxes as multiple, just add a `multiple` attribute on each one. This is required because Roz is lazy and doesn't perform any analysis on input names.
 
 *Example:*
 ```
@@ -125,14 +125,14 @@ For Roz to properly recognize checkboxes as multiple, just add a `multiple` atri
 
 ## Validation
 
-Roz relays on the [HTML5 contraint API](https://developer.mozilla.org/en-US/docs/Web/HTML/Constraint_validation) to support form validation.
+Roz relays on the [HTML5 Constraint validation](https://developer.mozilla.org/en-US/docs/Web/HTML/Constraint_validation) to support form validation.
  
-Validation is enabled by default and can be disabled in favor to your prefered validation method.
+Validation is enabled by default and can be disabled in favor of your preferred validation method.
 
 
 ### Settings
 ```
-// Defaults validation as if ommited
+// Validation default settings, as if omitted
 const validation = {
     validate: true,
     onBlurValidate: true,

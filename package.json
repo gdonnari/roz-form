@@ -1,22 +1,28 @@
 {
     "name": "roz-form",
     "version": "0.1.0",
-    "description": "Roz Form is a component library for react forms.",
-    "private": true,
-    "keywords": [
-        "roz-form",
-        "roz",
-        "forms",
-        "react"
-    ],
-    "license": "MIT",
-    "author": "Guido Donnari <gdonnari@gmail.com>",
+    "description": "Roz is a component library for React forms.",
     "main": "dist/roz-form-cjs.js",
     "module": "dist/roz-form-esm.js",
-    "files": [
-        "dist/*",
-        "src/*"
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/gdonnari/roz-form.git"
+    },
+    "license": "MIT",
+    "author": "Guido Donnari <gdonnari@gmail.com>",
+    "keywords": [
+        "form",
+        "react",
+        "roz",
+        "roz-form",
+        "validation"
     ],
+    "files": [
+        "dist/*"
+    ],
+    "peerDependencies": {
+        "react": "^18.3.1"
+    },
     "scripts": {
         "build-browser": "node build-browser.mjs",
         "build-cjs": "esbuild src/index.js --bundle --sourcemap --format=cjs --packages=external --outfile=dist/roz-form-cjs.js",
