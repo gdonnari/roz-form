@@ -14,6 +14,9 @@ Form validation is supported via [HTML5 Constraint validation](https://developer
 
 Roz can be used as base component library for fully styled forms without the burden of state management.
 
+## Install
+
+`npm i roz-form`
 
 ## Basic Usage
 
