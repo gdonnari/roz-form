@@ -66,6 +66,8 @@ import * as Roz from 'roz-form';
   </Roz.Form>
 </Roz.FormProvider>
 ```
+
+From now on, the form state is managed by Roz.
 **In order to work properly, Roz requires you to set a `name` attribute for each managed input.**
 Roz components are basically wrappers for standard ones, plus a few extensions for validation and state management. This means you can use any attribute that the base component supports. 
 
@@ -90,7 +92,6 @@ const record = {
 
 Any record attribute matching with a input name will be assigned as value.
 Now you have a fully functional form.  
-From now on, the form state is managed by Roz.
 
 
 ## Roz components 
@@ -204,7 +205,7 @@ The following example returns a text input whose value is calculated from other 
 ***MyForm.js*** 
 ```
 import * as Roz from 'roz-form';
-import { CustomInput } from "./custom_input.js";
+import { MyCustomInput } from "./custom_input.js";
 
 function MyForm(props) {
 ...
@@ -214,7 +215,7 @@ return (
   <Roz.Form name="myform" onSubmit={submitHandler}>
 	  <Roz.Input name="input1" type="text"/>
 	  <Roz.Input name="input2" type="text"/>
-	  <CustomInput name="input3" type="text"/>
+	  <MyCustomInput name="input3" type="text"/>
 	  ...
   </Roz.Form>
 </Roz.FormProvider>
@@ -244,27 +245,6 @@ export { MyCustomInput };
 
 Some helper components to make working with forms even easier.
 
-#### Submit button state
-Replace `button` tag with Roz provided one to enable/disable submit button based on validation state:
-```
-<Roz.Button type="submit" disabled="formState">Submit</Roz.Button>
-```
-
-#### Display form validation state
-
-The form validation state can be accessed with an ErrorMessage component.
-```
-function formStatus(field, error) {
-
-    if (error)
-        return 'Form is invalid';
-
-    return 'Form is valid';
-}
-...
-<p><Roz.ErrorMessage forInput="form" display={formStatus} /></p>
-```
-
 #### Select options
 Easily pass options to select inputs:
 ```
@@ -276,6 +256,12 @@ const additions = [
 ];
 ...
 <Roz.Select name="additions" options={additions} />
+```
+
+#### Submit button state
+Replace `button` tag with Roz provided one to enable/disable submit button based on validation state:
+```
+<Roz.Button type="submit" disabled="formState">Submit</Roz.Button>
 ```
 
 #### Datalist
@@ -291,6 +277,21 @@ const pets = [
 ...
 <Roz.Datalist id="pets" options={pets} />
 <Roz.Input type="text" name="pet" list="pets" />
+```
+
+#### Display form validation state
+
+The form validation state can be accessed with an ErrorMessage component.
+```
+function formStatus(field, error) {
+
+    if (error)
+        return 'Form is invalid';
+
+    return 'Form is valid';
+}
+...
+<p><Roz.ErrorMessage forInput="form" display={formStatus} /></p>
 ```
 
 ### That´s all Folks!
