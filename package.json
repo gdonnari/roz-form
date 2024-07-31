@@ -6,7 +6,10 @@
     "module": "dist/roz-form-esm.js",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/gdonnari/roz-form.git"
+        "url": "https://github.com/gdonnari/roz-form.git"
+    },
+    "bugs": {
+        "url": "https://github.com/gdonnari/roz-form/issues"
     },
     "license": "MIT",
     "author": "Guido Donnari <gdonnari@gmail.com>",
