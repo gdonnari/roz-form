@@ -1,5 +1,6 @@
 
 
+
 # Roz
 
 > React forms made easy.
@@ -9,6 +10,7 @@ Form definition should be easy to read and intuitive.
 Roz goal is to handle the state of any form as easily as possible without the need of complex configurations neither React effects.
 
 The only Roz concern is about form state management.
+
 Roz doesn't provide any CSS or form layout utility.
 Form validation is supported via [HTML5 Constraint validation](https://developer.mozilla.org/en-US/docs/Web/HTML/Constraint_validation).
 
@@ -21,9 +23,10 @@ Roz can be used as base component library for fully styled forms without the bur
 ## Basic Usage
 
 To easy understand how to use Roz, let's implement a form in 3 simple steps.
-In the following example we will use the three main components Roz provides: `Input`, `Select` and `Textarea`.
 
-Step 1. 
+In the following example we will use the main components Roz provides: `Form`, `Input`, `Select` and `Textarea`.
+
+### Step 1. 
 Write your form as usual, nothing really new here.
  
 ```
@@ -49,7 +52,8 @@ function submitHandler(e) {
 </form>
 ```
 
- Step 2.  
+ ### Step 2.  
+ 
  Enclose the form in a `<FormProvider>` component and replace `<form>`, `<input>`, `<select>` and `<textarea>` tags with the provided equivalent Roz components:
 
 ```
@@ -59,9 +63,9 @@ import * as Roz from 'roz-form';
   <Roz.Form name="myform" onSubmit={submitHandler}>
     <Roz.Input name="myinput" type="text" required />
     <Roz.Select name="options" required>
-	    <option value=""></option>
-	    <option value="A">A</option>
-	    <option value="B">B</option>
+      <option value=""></option>
+      <option value="A">A</option>
+      <option value="B">B</option>
     </Roz.Select>
     <Roz.Textarea name="comments" />
     <button type="reset">Reset</button>
@@ -70,11 +74,14 @@ import * as Roz from 'roz-form';
 </Roz.FormProvider>
 ```
 
-From now on, the form state is managed by Roz.
 **In order to work properly, Roz requires you to set a `name` attribute for each managed input.**
+
+Now you have a fully functional form. 
+From now on, the form state is managed by Roz.
+
 Roz components are basically wrappers for standard ones, plus a few extensions for validation and state management. This means you can use any attribute that the base component supports. 
 
- Step 3.
+###  Step 3.
  Optionally, provide initial values:
 
 ```
@@ -93,8 +100,7 @@ const record = {
 </Roz.FormProvider>
 ```
 
-Any record attribute matching with a input name will be assigned as value.
-Now you have a fully functional form.  
+Any record attribute matching with a input name will be assigned as value. 
 
 
 ## Roz components 
@@ -107,7 +113,7 @@ Now you have a fully functional form.
 | textarea | Textarea |
 
 
-#### Support for inputs with multiple values:
+### Support for inputs with multiple values:
 
 Some inputs are meant to be multiple, such as:
 
@@ -144,23 +150,26 @@ const validation = {
     invalidClassName: 'custom-invalid'
 };
    
-<Roz.FormProvider novalidate data={props.data} validation={validation}>
-  <Roz.Input name="myinput" required /> 
-  <!-- validation error display for input -->
-  <Roz.ErrorMessage forInput="myinput" />
-...
+<Roz.FormProvider data={props.data} validation={validation}>
+  <Roz.Form onSubmit={submitHandler}>
+    <Roz.Input name="myinput" required /> 
+    <!-- validation error display for "myinput" -->
+    <Roz.ErrorMessage forInput="myinput" />
+    ...
+  </Roz.Form>
 </Roz.FormProvider>);
 ```
 
 |Attribute| Usage |
 |--|--|
-| validate | enable/disable Roz form validation |
+| validate | enable/disable form validation |
 | onBlurValidate | enable/disable onBlur validation trigger |
 | onChangeValidate | enable/disable onChange validation trigger|
 | invalidClassName | Invalid inputs will be tagged with this class|
 
-`onBlurValidate`, `onChangeValidate` and `invalidClassName` attributes can be overwritten at component level:
+`onBlurValidate`, `onChangeValidate` and `invalidClassName` attributes can be overwritten at component level.
 
+Example for password input with validation on change event.
 ```
 <label htmlFor="mypass">Password input: </label>
 <Roz.Input name="mypass" type="password" validateOnChange={true} validateOnBlur={false} invalidClassName="custom-invalid" minLength="8" maxLength="30" required />
@@ -216,10 +225,10 @@ function MyForm(props) {
 return (
 <Roz.FormProvider>
   <Roz.Form name="myform" onSubmit={submitHandler}>
-	  <Roz.Input name="input1" type="text"/>
-	  <Roz.Input name="input2" type="text"/>
-	  <MyCustomInput name="input3" type="text"/>
-	  ...
+    <Roz.Input name="input1" type="text"/>
+    <Roz.Input name="input2" type="text"/>
+    <MyCustomInput name="input3" type="text"/>
+    ...
   </Roz.Form>
 </Roz.FormProvider>
 );
@@ -297,5 +306,5 @@ function formStatus(field, error) {
 <p><Roz.ErrorMessage forInput="form" display={formStatus} /></p>
 ```
 
-### That´s all Folks!
+#### That´s all Folks!
 
