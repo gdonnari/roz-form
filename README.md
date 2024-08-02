@@ -20,6 +20,10 @@ Roz can be used as base component library for fully styled forms without the bur
 
 `npm i roz-form`
 
+## Sandbox
+
+Try it online on this [sandbox](https://codesandbox.io/p/sandbox/roz-form-6xwhdf?file=%2Fsrc%2FApp.js).
+
 ## Basic Usage
 
 To easy understand how to use Roz, let's implement a form in 3 simple steps.
