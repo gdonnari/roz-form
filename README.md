@@ -44,13 +44,22 @@ function submitHandler(e) {
 }
 
 <form name="myform" onSubmit={submitHandler}>
-  <input name="myinput" type="text" required />
-  <select name="options" required>
-    <option value=""></option>
-    <option value="A">A</option>
-    <option value="B">B</option>
-  </select>
-  <textarea name="comments" />
+  <div>
+    <label>Text input: </label>
+    <input name="myinput" type="text" required />
+  </div>
+  <div>
+    <label>Select: </label>
+    <select name="options" required>
+      <option value=""></option>
+      <option value="A">A</option>
+      <option value="B">B</option>
+    </select>
+  </div>
+  <div>
+    <label>Textarea: </label>
+    <textarea name="comments" />
+  </div>
   <button type="reset">Reset</button>
   <button type="submit">Submit</button>
 </form>
@@ -65,13 +74,22 @@ import * as Roz from 'roz-form';
 ...
 <Roz.FormProvider>
   <Roz.Form name="myform" onSubmit={submitHandler}>
+  <div>
+    <label>Text input: </label>
     <Roz.Input name="myinput" type="text" required />
+  </div>
+  <div>
+    <label>Select: </label>
     <Roz.Select name="options" required>
       <option value=""></option>
       <option value="A">A</option>
       <option value="B">B</option>
     </Roz.Select>
+  </div>
+  <div>
+    <label>Textarea: </label>
     <Roz.Textarea name="comments" />
+  </div>
     <button type="reset">Reset</button>
     <button type="submit">Submit</button>
   </Roz.Form>
@@ -151,7 +169,7 @@ const validation = {
     validate: true,
     onBlurValidate: true,
     onChangeValidate: false,
-    invalidClassName: 'custom-invalid'
+    invalidClassName: 'roz-invalid'
 };
    
 <Roz.FormProvider data={props.data} validation={validation}>
@@ -250,6 +268,7 @@ function MyCustomInput(props) {
 
     const input = {...props};
     input.value = input1 + ' ' + input2;
+    input.readOnly = true;
 
     return (<Input {...input} />);
 }
@@ -265,9 +284,9 @@ Some helper components to make working with forms even easier.
 Easily pass options to select inputs:
 ```
 const additions = [
+    {text: '', value: ''},
     {text: 'Sugar', value: 'sugar'},
     {text: 'Milk', value: 'milk'},
-    {text: 'Caramel', value: 'caramel'},
     {text: 'Cinnamon', value: 'cinnamon'}
 ];
 ...
