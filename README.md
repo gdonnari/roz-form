@@ -3,18 +3,9 @@
 
 # Roz
 
-> React forms made easy.
+Use Roz to easy handle the state of any form.
 
-Form definition should be easy to read and intuitive.
-
-Roz goal is to handle the state of any form as easily as possible without the need of complex configurations neither React effects.
-
-The only Roz concern is about form state management.
-
-Roz doesn't provide any CSS or form layout utility.
 Form validation is supported via [HTML5 Constraint validation](https://developer.mozilla.org/en-US/docs/Web/HTML/Constraint_validation).
-
-Roz can be used as base component library for fully styled forms without the burden of state management.
 
 ## Install
 
@@ -22,16 +13,15 @@ Roz can be used as base component library for fully styled forms without the bur
 
 ## Sandbox
 
-Try it online on this [sandbox](https://codesandbox.io/p/sandbox/roz-form-6xwhdf?file=%2Fsrc%2FApp.js).
+Try it online with this [sandbox](https://codesandbox.io/p/sandbox/roz-form-6xwhdf?file=%2Fsrc%2FApp.js).
 
 ## Basic Usage
-
-To easy understand how to use Roz, let's implement a form in 3 simple steps.
 
 In the following example we will use the main components Roz provides: `Form`, `Input`, `Select` and `Textarea`.
 
 ### Step 1. 
-Write your form as usual, nothing really new here.
+
+We start with a normal HTML form:
  
 ```
 function submitHandler(e) {
@@ -147,7 +137,7 @@ For such cases, Roz uses arrays to store the input values.
 
 #### * Notes on Checkbox multiple:
 
-For Roz to properly recognize checkboxes as multiple, just add a `multiple` attribute on each one. This is required because Roz is lazy and doesn't perform any analysis on input names.
+For Roz to properly recognize checkboxes as multiple, just add a `multiple` attribute on each one.
 
 *Example:*
 ```
@@ -191,7 +181,7 @@ const validation = {
 
 `onBlurValidate`, `onChangeValidate` and `invalidClassName` attributes can be overwritten at component level.
 
-Example for password input with validation on change event.
+Example for password input with onChange event validation.
 ```
 <label htmlFor="mypass">Password input: </label>
 <Roz.Input name="mypass" type="password" validateOnChange={true} validateOnBlur={false} invalidClassName="custom-invalid" minLength="8" maxLength="30" required />
@@ -328,6 +318,3 @@ function formStatus(field, error) {
 ...
 <p><Roz.ErrorMessage forInput="form" display={formStatus} /></p>
 ```
-
-#### That´s all Folks!
-
